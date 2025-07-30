@@ -1,0 +1,7 @@
+node_modules
+.DS_Store
+/client/dist
+/server/models
+.vscode
+/vite-build-stats.html
+.env
