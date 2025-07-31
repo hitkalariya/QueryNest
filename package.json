@@ -16,7 +16,7 @@
     "start": "vite preview",
     "build": "vite build",
     "dev": "vite",
-    "lint": "biome check && tsc && ts-prune && jscpd client server && dpdm --no-tree --no-progress --no-warning vite.config.ts client",
+    "lint": "biome check && tsc && ts-prune && jscpd src && dpdm --no-tree --no-progress --no-warning config/vite.config.ts src/frontend",
     "format": "biome check --write",
     "test": "glob -c 'node --test' '**/*.test.ts' --ignore='node_modules/**'",
     "prepare": "husky"

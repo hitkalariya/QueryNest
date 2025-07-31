@@ -4,15 +4,15 @@ import dotenv from "dotenv";
 import getGitCommitHash from "helper-git-hash";
 import { visualizer } from "rollup-plugin-visualizer";
 import { defineConfig } from "vite";
-import { cacheServerHook } from "./server/cacheServerHook";
-import { compressionServerHook } from "./server/compressionServerHook";
-import { crossOriginServerHook } from "./server/crossOriginServerHook";
-import { internalApiEndpointServerHook } from "./server/internalApiEndpointServerHook";
-import { rerankerServiceHook } from "./server/rerankerServiceHook";
-import { searchEndpointServerHook } from "./server/searchEndpointServerHook";
-import { getSearchToken, regenerateSearchToken } from "./server/searchToken";
-import { statusEndpointServerHook } from "./server/statusEndpointServerHook";
-import { validateAccessKeyServerHook } from "./server/validateAccessKeyServerHook";
+import { cacheServerHook } from "../src/backend/middleware/cacheServerHook";
+import { compressionServerHook } from "../src/backend/middleware/compressionServerHook";
+import { crossOriginServerHook } from "../src/backend/middleware/crossOriginServerHook";
+import { internalApiEndpointServerHook } from "../src/backend/middleware/internalApiEndpointServerHook";
+import { rerankerServiceHook } from "../src/backend/middleware/rerankerServiceHook";
+import { searchEndpointServerHook } from "../src/backend/middleware/searchEndpointServerHook";
+import { getSearchToken, regenerateSearchToken } from "../src/backend/utils/searchToken";
+import { statusEndpointServerHook } from "../src/backend/middleware/statusEndpointServerHook";
+import { validateAccessKeyServerHook } from "../src/backend/middleware/validateAccessKeyServerHook";
 
 dotenv.config({ path: [".env", ".env.example"] });
 
@@ -20,7 +20,7 @@ export default defineConfig(({ command }) => {
   if (command === "build") regenerateSearchToken();
 
   return {
-    root: "./client",
+    root: "./src/frontend",
     define: {
       VITE_SEARCH_TOKEN: JSON.stringify(getSearchToken()),
       VITE_BUILD_DATE_TIME: Date.now(),
